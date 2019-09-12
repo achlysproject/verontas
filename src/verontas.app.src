@@ -1,0 +1,36 @@
+{application, verontas, [
+    {description, "A GRiSP application"},
+    {vsn, "0.1.0"},
+    {registered, [
+                    verontas
+                    , verontas_app
+                    , verontas_sup
+                    , verontas_util
+                    , verontas_config
+                 ]},
+    {mod, {verontas_app, []}},
+    {applications, [
+        kernel,
+        stdlib,
+        grisp
+    ]},
+    {env,[]},
+    {modules, [
+                verontas
+                , verontas_app
+                , verontas_sup
+                , verontas_util
+                , verontas_config
+              ]},
+
+    {maintainers, []},
+    {licenses, ["Apache 2.0"]},
+    {links , [
+               {"Achlys" , "https://ikopest.me"}
+             , {"Github" , "https://github.com/Laymer/achlys"}
+             , {"GRiSP" , "https://www.grisp.org"}
+             , {"Lasp" , "https://lasp-lang.readme.io"}
+             , {"Partisan" , "https://partisan.cloud"}
+             , {"LightKone" , "https://lightkone.eu/"}
+             ]}
+]}.

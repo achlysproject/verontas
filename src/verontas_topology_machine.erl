@@ -27,7 +27,9 @@
 
 -define(SERVER , ?MODULE).
 
--record(state , {}).
+-record(state , {
+    dag :: digraph()
+}).
 
 %%%===================================================================
 %%% API
@@ -63,7 +65,11 @@ start_link() ->
 %% @end
 %%--------------------------------------------------------------------
 init([]) ->
-    {ok , state_name , #state{}}.
+    %% Acyclic Directed Graph for Topology Representation
+    G = digraph:new([acyclic, protected]),
+    {ok , state_name , #state{
+        dag = G
+    }}.
 
 
 %%--------------------------------------------------------------------

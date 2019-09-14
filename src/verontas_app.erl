@@ -36,7 +36,7 @@
                {ok , pid() , State :: term()} |
                {error , Reason :: term()}).
 start(_StartType , _StartArgs) ->
-    case 'TopSupervisor':start_link() of
+    case verontas_sup:start_link() of
         {ok , Pid} ->
             {ok , Pid};
         Error ->

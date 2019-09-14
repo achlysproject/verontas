@@ -7,7 +7,6 @@
 %%% Created : 12. Sep 2019 16:58
 %%%-------------------------------------------------------------------
 -module(verontas_app).
--author("Igor Kopestenski").
 
 -behaviour(application).
 

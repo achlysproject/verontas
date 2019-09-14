@@ -7,7 +7,6 @@
 %%% Created : 12. Sep 2019 18:56
 %%%-------------------------------------------------------------------
 -module(verontas_topology_machine).
--author("Igor Kopestenski").
 
 -behaviour(gen_statem).
 
@@ -28,7 +27,7 @@
 -define(SERVER , ?MODULE).
 
 -record(state , {
-    dag :: digraph()
+    dag :: digraph:graph()
 }).
 
 %%%===================================================================

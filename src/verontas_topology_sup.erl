@@ -71,7 +71,7 @@ start_link() ->
     ignore |
     {error , Reason :: term()}).
 init([]) ->
-    {ok , {?SUPFLAGS(rest_for_one, ?THREE, ?TEN) , [
+    {ok , {?SUPFLAGS(rest_for_one, 2, 6) , [
             ?VERONTAS_TOPOLOGY_SERVER
             , ?VERONTAS_TOPOLOGY_MACHINE
         ]}}.

@@ -73,7 +73,7 @@ start_link() ->
     ignore |
     {error , Reason :: term()}).
 init([]) ->
-    {ok , {?SUPFLAGS(one_for_one, ?THREE, ?TEN) , [
+    {ok , {?SUPFLAGS(one_for_one, 3, 15) , [
                                         ?VERONTAS_TOPOLOGY_SUP
                                      ]}}.
 

@@ -1,0 +1,22 @@
+%--- Erlang Inet Configuration -------------------------------------------------
+
+% Add hosts
+%
+%% Edge wireless laptop node :
+%% Replace <hostname> with the value returned by the "hostname -s" command
+%% and uncomment host entry.
+
+{host, {169,254,187,90}, ["MBP"]}.
+
+% {resolv_conf, "/etc/resolv.conf"}.
+
+%--- GRiSP boards --------------------------------------------------------------
+
+% Do not monitor the hosts file
+{hosts_file, ""}.
+
+% Disable caching
+{cache_size, 0}.
+
+% Specify lookup method
+{lookup, [file]}.

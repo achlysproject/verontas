@@ -9,7 +9,6 @@
 int inited = 0;
 int inited_msg = 0;
 
-
 typedef struct _wrapper {
   ErlNifPid pid;
 }erlang_pid;

@@ -53,8 +53,8 @@
 #define INI_FILE (MNT "grisp.ini")
 #define DHCP_CONF_FILE (MNT "dhcpcd.conf")
 
-#define PRIO_DHCP		(RTEMS_MAXIMUM_PRIORITY - 1)
-#define PRIO_WPA		(RTEMS_MAXIMUM_PRIORITY - 1)
+#define PRIO_DHCP   (RTEMS_MAXIMUM_PRIORITY - 1)
+#define PRIO_WPA    (RTEMS_MAXIMUM_PRIORITY - 1)
 
 #define SHELL_STACK_SIZE (RTEMS_MINIMUM_STACK_SIZE * 4)
 
@@ -114,7 +114,7 @@ void
 fatal_extension(uint32_t source, uint32_t is_internal, uint32_t error)
 {
   printk ("fatal extension: source=%ld, is_internal=%ld, error=%ld\n",
-	  source, is_internal, error);
+    source, is_internal, error);
   if (source == RTEMS_FATAL_SOURCE_EXCEPTION)
     rtems_exception_frame_print((const rtems_exception_frame *)error);
 
@@ -135,37 +135,37 @@ fatal_atexit(void)
 }
 
 static int ini_file_handler(void *arg, const char *section, const char *name,
-			    const char *value)
+          const char *value)
 {
   int ok = 0;
 
   printf ("grisp.ini: "
-	  "section \"%s\", name \"%s\", value \"%s\"\n",
-	  section, name, value);
+    "section \"%s\", name \"%s\", value \"%s\"\n",
+    section, name, value);
   if (strcmp(section, "network") == 0) {
       if (strcmp(name, "hostname") == 0) {
-	  hostname = strdup(value);
-	  ok = 1;
+    hostname = strdup(value);
+    ok = 1;
       }
       else if (strcmp(name, "ip_self") == 0) {
-	  if (strcmp(value, "dhcp") == 0) {
-	      start_dhcp = 1;
-	      ok = 1;
-	  }
+    if (strcmp(value, "dhcp") == 0) {
+        start_dhcp = 1;
+        ok = 1;
+    }
       }
       else if (strcmp(name, "wlan") == 0) {
-	  if (strcmp(value, "enable") == 0) {
-	      wlan_enable = 1;
-	      ok = 1;
-	  }
-	  else if (strcmp(value, "disable") == 0) {
-	      wlan_enable = 0;
-	      ok = 1;
-	  }
+    if (strcmp(value, "enable") == 0) {
+        wlan_enable = 1;
+        ok = 1;
+    }
+    else if (strcmp(value, "disable") == 0) {
+        wlan_enable = 0;
+        ok = 1;
+    }
       }
       else if (strcmp(name, "wpa") == 0) {
-	wpa_supplicant_conf = strdupcat(MNT, value);
-	ok = 1;
+  wpa_supplicant_conf = strdupcat(MNT, value);
+  ok = 1;
       }
   }
   else if(strcmp(section, "yggdrasil") == 0) {
@@ -180,11 +180,11 @@ static int ini_file_handler(void *arg, const char *section, const char *name,
   }
   else if (strcmp(section, "erlang") == 0) {
       if (strcmp(name, "args") == 0) {
-	  printf ("erl args: "
-		  "section \"%s\", name \"%s\", value \"%s\"\n",
-		  section, name, value);
-	  erl_args = strdup(value);
-	  ok = 1;
+    printf ("erl args: "
+      "section \"%s\", name \"%s\", value \"%s\"\n",
+      section, name, value);
+    erl_args = strdup(value);
+    ok = 1;
       }
   }
   else
@@ -192,8 +192,8 @@ static int ini_file_handler(void *arg, const char *section, const char *name,
 
   if (!ok) {
       printf ("erl_main: error in configuration file: "
-	      "section \"%s\", name \"%s\", value \"%s\"\n",
-	      section, name, value);
+        "section \"%s\", name \"%s\", value \"%s\"\n",
+        section, name, value);
       ok = 1;
     }
 
@@ -206,7 +206,7 @@ static void evaluate_ini_file(const char *ini_file)
 
     rv = ini_parse(ini_file, ini_file_handler, NULL);
     if (rv == -1) {
-	printf("WARNING: Can't find ini file %s -> using defaults\n", ini_file);
+  printf("WARNING: Can't find ini file %s -> using defaults\n", ini_file);
     }
 }
 
@@ -244,21 +244,21 @@ default_network_ifconfig_lo0(void)
 static void
 create_wlandev(void)
 {
-	int exit_code;
-	char *ifcfg[] = {
-		"ifconfig",
-		"wlan0",
-		"create",
-		"wlandev",
-		"rtwn0",
-		"up",
-		NULL
-	};
+  int exit_code;
+  char *ifcfg[] = {
+    "ifconfig",
+    "wlan0",
+    "create",
+    "wlandev",
+    "rtwn0",
+    "up",
+    NULL
+  };
 
-	exit_code = rtems_bsd_command_ifconfig(RTEMS_BSD_ARGC(ifcfg), ifcfg);
-	if(exit_code != EXIT_SUCCESS) {
-		printf("ERROR while creating wlan0.");
-	}
+  exit_code = rtems_bsd_command_ifconfig(RTEMS_BSD_ARGC(ifcfg), ifcfg);
+  if(exit_code != EXIT_SUCCESS) {
+    printf("ERROR while creating wlan0.");
+  }
 }
 
 void parse_args(char *args)
@@ -267,15 +267,15 @@ void parse_args(char *args)
     char *last;
 
     for (p = strtok_r(args, " \t", &last);
-	 p;
-	 p = strtok_r(NULL, " \t", &last))
+   p;
+   p = strtok_r(NULL, " \t", &last))
     {
-	if (argc >= MAX_ARGC) {
-	        printf("ERROR: too many erl arguments\n");
-		exit(-1);
-	}
+  if (argc >= MAX_ARGC) {
+          printf("ERROR: too many erl arguments\n");
+    exit(-1);
+  }
 
-	argv[argc++] = p;
+  argv[argc++] = p;
     }
 }
 

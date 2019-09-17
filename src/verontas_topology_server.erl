@@ -7,7 +7,6 @@
 %%% Created : 12. Sep 2019 18:56
 %%%-------------------------------------------------------------------
 -module(verontas_topology_server).
--author("Igor Kopestenski").
 
 -behaviour(gen_server).
 
@@ -15,12 +14,16 @@
 -export([start_link/0]).
 
 %% gen_server callbacks
--export([init/1 ,
-         handle_call/3 ,
-         handle_cast/2 ,
-         handle_info/2 ,
-         terminate/2 ,
-         code_change/3]).
+-export([init/1]).
+-export([handle_call/3]).
+-export([handle_cast/2]).
+-export([handle_info/2]).
+-export([terminate/2]).
+-export([code_change/3]).
+
+
+-export([get_soname/0]).
+-on_load(get_soname/0).
 
 -define(SERVER , ?MODULE).
 
@@ -144,3 +147,25 @@ code_change(_OldVsn , State , _Extra) ->
 %%%===================================================================
 %%% Internal functions
 %%%===================================================================
+
+%%--------------------------------------------------------------------
+%% @private
+%%--------------------------------------------------------------------
+get_soname() ->
+  SoName = filename:join(
+    case code:priv_dir(?MODULE) of
+        {error, bad_name} ->
+          %% this is here for testing purposes
+          filename:join(
+            [filename:dirname(code:which(?MODULE)),"..","priv"]);
+        Dir ->
+          Dir
+      % end, "myapp").
+  end, "myapp"),
+  try erlang:load_nif(SoName, 0) of
+    ok ->
+      init_ygg()
+  catch
+    _:_ ->
+      logger:error("Failed to load NIF")
+  end.

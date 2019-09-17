@@ -3,10 +3,14 @@
     {vsn, "0.1.0"},
     {registered, [
                     verontas
+                    , myapp
                     , verontas_app
                     , verontas_sup
                     , verontas_util
                     , verontas_config
+                    , verontas_topology_sup
+                    , verontas_topology_machine
+                    , verontas_topology_server
                  ]},
     {mod, {verontas_app, []}},
     {applications, [
@@ -17,10 +21,14 @@
     {env,[]},
     {modules, [
                 verontas
+                , myapp
                 , verontas_app
                 , verontas_sup
                 , verontas_util
                 , verontas_config
+                , verontas_topology_sup
+                , verontas_topology_machine
+                , verontas_topology_server
               ]},
 
     {maintainers, []},

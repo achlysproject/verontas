@@ -15,9 +15,7 @@
 
 % -on_load(init_ygg_nif/0).
 -on_load(get_soname/0).
--on_load(get_ip/0).
--on_load(set_ip/0).
--on_load(init_ygg_messaging/1).
+
 %
 % add_host(IP, NAME) ->
 %   logger:info("Adding host ~s@~s ~n", [IP, NAME]),

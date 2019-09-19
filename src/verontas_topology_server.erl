@@ -22,8 +22,8 @@
 -export([code_change/3]).
 
 
--export([get_soname/0]).
--on_load(get_soname/0).
+% -export([get_soname/0]).
+% -on_load(get_soname/0).
 
 -define(SERVER , ?MODULE).
 
@@ -151,21 +151,21 @@ code_change(_OldVsn , State , _Extra) ->
 %%--------------------------------------------------------------------
 %% @private
 %%--------------------------------------------------------------------
-get_soname() ->
-  SoName = filename:join(
-    case code:priv_dir(?MODULE) of
-        {error, bad_name} ->
-          %% this is here for testing purposes
-          filename:join(
-            [filename:dirname(code:which(?MODULE)),"..","priv"]);
-        Dir ->
-          Dir
-      % end, "myapp").
-  end, "myapp"),
-  try erlang:load_nif(SoName, 0) of
-    ok ->
-      init_ygg()
-  catch
-    _:_ ->
-      logger:error("Failed to load NIF")
-  end.
+% get_soname() ->
+%   SoName = filename:join(
+%     case code:priv_dir(?MODULE) of
+%         {error, bad_name} ->
+%           %% this is here for testing purposes
+%           filename:join(
+%             [filename:dirname(code:which(?MODULE)),"..","priv"]);
+%         Dir ->
+%           Dir
+%       % end, "myapp").
+%   end, "myapp"),
+%   try erlang:load_nif(SoName, 0) of
+%     ok ->
+%       init_ygg()
+%   catch
+%     _:_ ->
+%       logger:error("Failed to load NIF")
+%   end.

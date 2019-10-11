@@ -3,7 +3,7 @@
     {vsn, "0.1.0"},
     {registered, [
                     verontas
-                    , myapp
+                    , matrix_nif
                     , verontas_app
                     , verontas_sup
                     , verontas_util
@@ -21,7 +21,7 @@
     {env,[]},
     {modules, [
                 verontas
-                , myapp
+                , matrix_nif
                 , verontas_app
                 , verontas_sup
                 , verontas_util

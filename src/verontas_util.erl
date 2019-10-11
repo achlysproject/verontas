@@ -10,3 +10,8 @@
 
 %% API
 -export([]).
+
+%%--------------------------------------------------------------------
+%% @private
+find_beam(Module) when is_atom(Module) ->
+  code:where_is_file(Module ++ ".beam").
